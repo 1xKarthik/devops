@@ -1,0 +1,32 @@
+---
+- name: Ensure that essentials are installed like vim, wget, curl, tree
+  package:
+    name: "{{ common.essentials }}"
+    state: present
+    
+- name: Ensure that ssh is installed
+  package:
+    name: "{{ common.ssh }}"
+    state: present
+
+- name: Start ssh services
+  service: 
+    name: "{{ common.ssh_service }}"
+    enabled: yes
+    state: started
+
+- name: Ensure NodeJS is installed
+  package:
+    name: "{{ common.node }}"
+
+- name: Install bower dependencies for the project
+  npm: 
+    name: bower
+    global: yes
+    state: present
+
+- name: Install gulp dependencies for the project
+  npm: 
+    name: gulp
+    global: yes
+    state: present

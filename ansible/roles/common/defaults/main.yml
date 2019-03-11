@@ -1,0 +1,7 @@
+---
+common:
+  essentials: ['vim','wget','curl','tree','git']
+  ssh: ['openssh-server','openssh-clients']
+  ssh_service: sshd
+  node: ['nodejs']
+  npm_pacakges: ['bower','gulp']

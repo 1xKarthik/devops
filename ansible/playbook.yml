@@ -1,0 +1,23 @@
+---
+
+  - hosts: localhost
+    connection: local
+    become: yes
+    gather_facts: True
+    vars:
+      http_port: 80
+      doc_dir: /ansible/
+      doc_root: /var/www/html/ansible/
+
+    roles:
+      - common
+
+    tasks:
+    - name: Ensure that Apache & nano is installed
+      yum:
+        name: ['httpd','nano']
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Start Apache Services
+      service: name=httpd enabled=yes state=started
